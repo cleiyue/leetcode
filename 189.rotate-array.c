@@ -4,31 +4,19 @@
  * [189] Rotate Array
  */
 
-void rotate(int* nums, int numsSize, int k) {
-    // 错误
-    // k = k % numsSize;
-    // if (k == 0) {
-    //     return;
-    // }
-    // int i = 0;
-    // int temp = nums[i];
-    // int f = numsSize;
-    // while (f-- > 0) { //[1,2,3,4] 1  [1,2,3,4,5,6] 2
-    //     int next = (i + k) % numsSize;
-    //     int j = nums[next];
-    //     nums[next] = temp;
-    //     i = next;
-    //     temp = j;
-    // }
+void reverse(int* nums, int start, int end) {
+    while (start < end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
+    }
+}
 
-    //两次循环
-    // k = k % numsSize;
-    // for (int i = 0; i < k; i++) {
-    //     int k = nums[numsSize - 1];
-    //     for (int j = numsSize - 2; j >= 0; j--) {
-    //         nums[j + 1] = nums[j];
-    //     }
-    //     nums[0] = k;
-    // }
-    //
+void rotate(int* nums, int numsSize, int k) {
+    k = k % numsSize;
+    reverse(nums, 0, numsSize - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, numsSize - 1);
 }
