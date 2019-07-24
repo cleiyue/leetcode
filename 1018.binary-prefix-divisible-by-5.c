@@ -10,7 +10,7 @@
 bool* prefixesDivBy5(int* A, int ASize, int* returnSize) {
     bool* ans = malloc(ASize * sizeof(bool));
     *returnSize = ASize;
-    long long total = 0L;
+    int total = 0L;
     for (int i = 0; i < ASize; i++) {
         total = total << 1;
         total += A[i];
