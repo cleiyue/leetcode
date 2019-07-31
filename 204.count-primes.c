@@ -4,22 +4,18 @@
  * [204] Count Primes
  */
 
-bool isPrime(int n) {
-    int k = (int)sqrt((double)n);
-    for (int i = 2; i <= k; i++) {
-        if (n % i == 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
 int countPrimes(int n) {
-    int ans = 0;
-    for (int i = 2; i < n; i++) {
-        if (isPrime(i)) {
-            ans++;
+    if (n <= 2) return 0;
+    int *isPrime = calloc(n, sizeof(int));
+    int count = 1;
+    for (int i = 3; i < n; i += 2) {
+        if ((long int)i * (long int)i < (long int)n) {
+            if (isPrime[i]) continue;
+            for (int j = i * i; j < n; j += i * 2) {
+                isPrime[j] = 1;
+            }
         }
+        if (!isPrime[i]) count++;
     }
-    return ans;
+    return count;
 }
