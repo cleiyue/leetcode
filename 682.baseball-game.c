@@ -11,11 +11,9 @@ int calPoints(char **ops, int opsSize) {
         if (index > 0 && ops[i][0] == 'C') {
             index--;
         } else if (ops[i][0] == '+') {
-            arr[index] = arr[index - 1] + arr[index - 2];
-            index++;
+            arr[index++] = arr[index - 1] + arr[index - 2];
         } else if (ops[i][0] == 'D') {
-            arr[index] = arr[index - 1] * 2;
-            index++;
+            arr[index++] = arr[index - 1] * 2;
         } else {
             arr[index++] = atoi(ops[i]);
         }
