@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode id=1072 lang=c
  *
- * [739] Flip Columns For Maximum Number of Equal Rows
+ * [1072] Flip Columns For Maximum Number of Equal Rows
  */
 
 int compare(int* a, int* b, int size) {
