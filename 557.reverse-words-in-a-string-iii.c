@@ -10,21 +10,18 @@ char *reverseWords(char *s) {
     int idx = 0;
     int a = 0;
     int b = 0;
-    for (int i = 0; i < len; i++) {
-        if (s[i] == ' ') {
+    for (int i = 0; i <= len; i++) {
+        if (s[i] == ' ' || s[i] == '\0') {
             a = i;
             for (int j = a - 1; j >= b; j--) {
                 ans[idx++] = s[j];
             }
-            ans[idx++] = ' ';
-            b = a + 1;
-        } else if (i == len - 1) {
-            a = i;
-            for (int j = a; j >= b; j--) {
-                ans[idx++] = s[j];
+            if (s[i] == ' ') {
+                ans[idx++] = ' ';
+                b = a + 1;
             }
         }
     }
-    ans[idx++] = '\0';
+    ans[idx] = '\0';
     return ans;
 }
