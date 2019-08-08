@@ -22,9 +22,34 @@ void traversal(struct TreeNode* root, int* ans, int* idx) {
     traversal(root->right, ans, idx);
 }
 
+//Recursive
 int* inorderTraversal(struct TreeNode* root, int* returnSize) {
     *returnSize = 0;
     int* ans = malloc(100 * sizeof(int));
     traversal(root, ans, returnSize);
+    return ans;
+}
+
+//Morris Traversal
+int* inorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* ans = malloc(100 * sizeof(int));
+    *returnSize = 0;
+    struct TreeNode* curr = root;
+    struct TreeNode* pre;
+    while (curr != NULL) {
+        if (curr->left == NULL) {
+            ans[(*returnSize)++] = curr->val;
+            curr = curr->right;
+        } else {
+            pre = curr->left;  // 找到左子树的最右节点
+            while (pre->right != NULL) {
+                pre = pre->right;
+            }
+            pre->right = curr;  // 最右节点指向root节点
+            struct TreeNode* temp = curr;
+            curr = curr->left;
+            temp->left = NULL;
+        }
+    }
     return ans;
 }
