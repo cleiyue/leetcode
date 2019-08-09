@@ -8,6 +8,7 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 // 离后面的 C 最近也可以
+// 一次正向计算，一次反向计算
 int* shortestToChar(char* S, char C, int* returnSize) {
     int len = strlen(S);
     int* ans = malloc(len * sizeof(int));
