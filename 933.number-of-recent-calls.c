@@ -7,24 +7,26 @@
 typedef struct {
     int* arr;
     int idx;
+    int start;
 } RecentCounter;
 
 RecentCounter* recentCounterCreate() {
     RecentCounter* obj = malloc(sizeof(RecentCounter));
     obj->arr = malloc(10000 * sizeof(int));
     obj->idx = 0;
+    obj->start = 0;
     return obj;
 }
 
 int recentCounterPing(RecentCounter* obj, int t) {
     obj->arr[obj->idx++] = t;
-    int ans = 0;
-    for (int i = obj->idx - 1; i >= 0; i--) {
+    for (int i = obj->start; i < obj->idx; i++) {
         if (t - 3000 <= obj->arr[i] && obj->arr[i] <= t) {
-            ans++;
+            obj->start = i;
+            return obj->idx - i;
         }
     }
-    return ans;
+    return -1;
 }
 
 void recentCounterFree(RecentCounter* obj) {
