@@ -28,6 +28,5 @@ void sumPath(struct TreeNode* root, int total, int sum, int* stat) {
 bool hasPathSum(struct TreeNode* root, int sum) {
     int stat = 0;
     sumPath(root, 0, sum, &stat);
-    if (stat == 1) return true;
-    return false;
+    return stat == 1;
 }
