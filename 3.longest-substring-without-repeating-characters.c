@@ -7,15 +7,11 @@
 #define MAX(a, b) (a > b ? a : b)
 int lengthOfLongestSubstring(char *s) {
     int *letter = calloc(127, sizeof(int));
-    int ln = strlen(s);
-    int ans = 0, i = 0, j = 0;
-    while (i < ln && j < ln) {
-        if (letter[s[j]] == 0) {
-            letter[s[j++]]++;
-            ans = MAX(ans, j - i);
-        } else {
-            letter[s[i++]]--;
-        }
+    int ln = strlen(s), ans = 0;
+    for (int j = 0, i = 0; j < ln; j++) {
+        i = MAX(letter[s[j]], i);
+        ans = MAX(ans, j - i + 1);
+        letter[s[j]] = j + 1;
     }
     return ans;
 }
