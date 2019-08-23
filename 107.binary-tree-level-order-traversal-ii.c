@@ -27,21 +27,25 @@ void help(struct TreeNode* root, int level, int** ans, int* returnSize, int* ret
     ans[level - 1][returnColumnSizes[level - 1]++] = root->val;
 }
 
+void reverse(int** ans, int size, int* returnColumnSizes) {
+    int i = 0, j = size - 1;
+    while (i <= j) {
+        int* temp = ans[i];
+        ans[i] = ans[j];
+        ans[j] = temp;
+        int col = returnColumnSizes[i];
+        returnColumnSizes[i] = returnColumnSizes[j];
+        returnColumnSizes[j] = col;
+        i++;
+        j--;
+    }
+}
+
 int** levelOrderBottom(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
     int** ans = malloc(1000 * sizeof(int*));
     *returnSize = 0;
     *returnColumnSizes = calloc(1000, sizeof(int));
     help(root, 1, ans, returnSize, *returnColumnSizes);
-    int i = 0, j = *returnSize - 1;
-    while (i <= j) {
-        int* temp = ans[i];
-        ans[i] = ans[j];
-        ans[j] = temp;
-        int col = (*returnColumnSizes)[i];
-        (*returnColumnSizes)[i] = (*returnColumnSizes)[j];
-        (*returnColumnSizes)[j] = col;
-        i++;
-        j--;
-    }
+    reverse(ans, *returnSize, *returnColumnSizes);
     return ans;
 }
