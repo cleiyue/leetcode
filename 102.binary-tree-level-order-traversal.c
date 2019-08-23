@@ -23,9 +23,9 @@ void help(struct TreeNode* root, int level, int** ans, int* returnSize, int* ret
         ans[*returnSize] = malloc(1000 * sizeof(int));
         (*returnSize)++;
     }
+    ans[level - 1][returnColumnSizes[level - 1]++] = root->val;
     help(root->left, level + 1, ans, returnSize, returnColumnSizes);
     help(root->right, level + 1, ans, returnSize, returnColumnSizes);
-    ans[level - 1][returnColumnSizes[level - 1]++] = root->val;
 }
 
 int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
