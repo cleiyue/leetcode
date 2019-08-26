@@ -4,18 +4,6 @@
  * [720] Longest Word in Dictionary
  */
 
-/*
- * @lc app=leetcode id=720 lang=c
- *
- * [720] Longest Word in Dictionary
- */
-
-/*
- * @lc app=leetcode id=720 lang=c
- *
- * [720] Longest Word in Dictionary
- */
-
 typedef struct node {
     char s;
     bool end;
@@ -73,11 +61,5 @@ char *longestWord(char **words, int wordsSize) {
             }
         }
     }
-    int ansLen = strlen(words[maxIndex]);
-    char *ans = malloc((ansLen + 1) * sizeof(char));
-    for (int i = 0; i < ansLen; i++) {
-        ans[i] = words[maxIndex][i];
-    }
-    ans[ansLen] = '\0';
-    return ans;
+    return words[maxIndex];
 }
