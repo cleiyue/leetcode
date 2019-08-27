@@ -17,32 +17,28 @@ char *longestWord(char **words, int wordsSize) {
     qsort(words, wordsSize, sizeof(words[0]), cmp);
     Node *trie = malloc(sizeof(Node));
     for (int i = 0; i < 26; i++) trie->children[i] = NULL;
-    trie->end = true;
-    int max = 0;
-    int maxIndex = -1;
+    int max = 0, index = 0;
     for (int i = 0; i < wordsSize; i++) {
-        Node *temp = trie;
-        int tempMax = 0;
-        int len = strlen(words[i]);
-        bool jump = false;
+        Node *next = trie;
+        int temp = 0, len = strlen(words[i]);
         for (int j = 0; j < len; j++) {
             Node *n;
-            if (temp->children[words[i][j] - 'a'] == NULL) {
+            if (next->children[words[i][j] - 'a'] == NULL) {
                 n = malloc(sizeof(Node));
                 for (int i = 0; i < 26; i++) n->children[i] = NULL;
                 n->end = false;
             } else {
-                n = temp->children[words[i][j] - 'a'];
+                n = next->children[words[i][j] - 'a'];
             }
             if (j == len - 1) n->end = true;
-            temp = temp->children[words[i][j] - 'a'] = n;
-            if (temp->end == false) jump = true;
-            if (temp->end == true) tempMax++;
-            if (j == len - 1 && !jump && (tempMax > max || (tempMax == max && maxIndex >= 0 && words[i][0] < words[maxIndex][0]))) {
-                max = tempMax;
-                maxIndex = i;
+            if (n->end == false) break;
+            next = next->children[words[i][j] - 'a'] = n;
+            if (next->end == true) temp++;
+            if (j == len - 1 && temp > max) {
+                max = temp;
+                index = i;
             }
         }
     }
-    return words[maxIndex];
+    return words[index];
 }
