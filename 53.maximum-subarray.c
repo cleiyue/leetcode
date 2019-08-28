@@ -5,16 +5,15 @@
  */
 
 int maxSubArray(int* nums, int numsSize) {
-    int totalCnt = nums[0];
-    int tmpCnt = nums[0];
+    int sum = nums[0];
+    int now = nums[0];
     for (int i = 1; i < numsSize; i++) {
-        if ((tmpCnt + nums[i]) < nums[i]) {
-            tmpCnt = 0;
-        }
-        tmpCnt += nums[i];
-        if (totalCnt < tmpCnt) {
-            totalCnt = tmpCnt;
-        }
+        if (now < 0)
+            now = nums[i];
+        else
+            now = now + nums[i];
+        if (now > sum)
+            sum = now;
     }
-    return totalCnt;
+    return sum;
 }
