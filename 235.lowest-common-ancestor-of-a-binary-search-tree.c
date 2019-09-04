@@ -20,4 +20,3 @@ struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p,
         return root;
     }
 }
-
