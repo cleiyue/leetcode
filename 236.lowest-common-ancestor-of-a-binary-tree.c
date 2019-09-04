@@ -1,0 +1,19 @@
+/*
+ * @lc app=leetcode id=236 lang=c
+ *
+ * [236] Lowest Common Ancestor of a Binary Tree
+ */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+    if (!root || root == p || root == q) return root;
+    struct TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    struct TreeNode* right = lowestCommonAncestor(root->right, p, q);
+    return !left ? right : !right ? left : root;
+}
