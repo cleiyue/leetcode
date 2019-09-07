@@ -19,7 +19,7 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
     int** ans = malloc(sizeof(int*) * max);
     *returnSize = 0;
     *returnColumnSizes = malloc(sizeof(int) * max);
-    for (int i = 0; i < numsSize; i++) {
+    for (int i = 0; i < numsSize-2; i++) {
         if (i > 0 && nums[i] == nums[i - 1]) continue;
         int mid = i + 1;
         int high = numsSize - 1;
