@@ -13,20 +13,17 @@
  */
 
 #define ABS(a) ((a) > 0 ? (a) : -(a))
-int total(struct TreeNode* root) {
+
+int traverse(struct TreeNode* root, int* ans) {
     if (!root) return 0;
-    return root->val + total(root->left) + total(root->right);
+    int left = traverse(root->left, ans);
+    int right = traverse(root->right, ans);
+    *ans += ABS(left - right);
+    return left + right + root->val;
 }
 
 int findTilt(struct TreeNode* root) {
-    if (!root) return 0;
-    if (root->left && root->right) {
-        return ABS(total(root->left) - total(root->right)) + findTilt(root->left) + findTilt(root->right);
-    } else if (root->left) {
-        return ABS(total(root->left)) + findTilt(root->left);
-    } else if (root->right) {
-        return ABS(total(root->right)) + findTilt(root->right);
-    } else {
-        return 0;
-    }
+    int ans = 0;
+    traverse(root, &ans);
+    return ans;
 }
