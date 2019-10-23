@@ -9,18 +9,18 @@
  */
 class Solution {
     vector<string> ret;
-    void foo(int left, int right, string p) {
+    void backtrack(int left, int right, string p) {
         if (left < 0 || right < 0 || left > right) return;
         if (left == 0 && right == 0)
             ret.push_back(p);
-        foo(left - 1, right, p + '(');
-        foo(left, right - 1, p + ')');
+        backtrack(left - 1, right, p + '(');
+        backtrack(left, right - 1, p + ')');
     }
 
    public:
     vector<string> generateParenthesis(int n) {
         ret.clear();
-        foo(n, n, "");
+        backtrack(n, n, "");
         return ret;
     }
 };
