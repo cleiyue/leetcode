@@ -15,7 +15,7 @@ int search(int* nums, int numsSize, int target) {
             } else {
                 low = mid + 1;
             }
-        } else {  //nums[low] > nums[mid]
+        } else {  //nums[low] > nums[mid],在递增序列上进行判断
             if (target <= nums[high] && target > nums[mid]) {
                 low = mid + 1;
             } else {
