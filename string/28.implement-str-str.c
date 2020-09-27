@@ -4,7 +4,6 @@
  * [28] Implement strStr()
  */
 
-// @lc code=start
 
 int strStr(char* haystack, char* needle) {
     int nLen = strlen(needle);
@@ -23,4 +22,20 @@ int strStr(char* haystack, char* needle) {
     }
     return -1;
 }
-// @lc code=end
+
+int strStr(char* haystack, char* needle) {
+    int q = strlen(haystack), w = strlen(needle);
+    if (w == 0) return 0;
+    int i, j = 0;
+    while (i < q) {
+        if (haystack[i] == needle[j]) {
+            if (j == w - 1) return i - j;
+            i++;
+            j++;
+        } else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+    return -1;
+}
