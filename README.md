@@ -9,5 +9,4 @@ dynamic programming
 
 two pointers
 
-<string/392.is-subsequence.c>
-
+[Is Subsequence](https://github.com/aaro0n/leetcode/blob/master/string/392.is-subsequence.c)
