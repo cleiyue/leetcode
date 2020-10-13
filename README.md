@@ -1,11 +1,11 @@
 leetcode
 ---
 
-greedy
+## greedy
 
-binary search
+## binary search
 
-dynamic programming
+## dynamic programming
 
 ## two pointers
 
