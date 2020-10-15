@@ -17,3 +17,5 @@ leetcode
 
 ## recursion
 [[680] Valid Palindrome II](https://github.com/aaro0n/leetcode/blob/master/string/680.valid-palindrome-ii.c)
+
+## tree
